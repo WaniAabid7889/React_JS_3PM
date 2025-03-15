@@ -1,90 +1,61 @@
+import React from 'react';
 import './App.css';
-
-
-
-let arr = [1,2,3,4,5];
-let userName = ['abid','raj','kumar'];
-let userPost = ['teaching / Developer','salesforce Developer','backend Developer'];
-
-let user = {
-  __id : 101,
-  name : "Bhanu",
-  course : "React Js"
-}
-
-
-
-export const getUser = () =>{
-
-  try{
-    return [2,4,4];
-  }catch(err){
-    throw err;
-  }
-}
-
-let combine = [...userName, ...userPost];
-
-class Employee {
-  constructor(id,name,post){
-    this.id = id;
-    this.name = name;
-    this.post = post;
-  }
-
-  display(){
-   
-    return `id : ${this.id} name : ${this.name}, post : ${this.post}`;
-  }
-  
-  setName=(name)=>{
-    return this.name = name;
-
-  }
-}
-
+import User from './components/User';
 
 function App() {
-  let i=0;
-  let emp = new Employee(1,"raj","developer");
-  return (
-    <div className="App">
-      <h1>Hello we are create React Js project</h1>
-       {arr.map((item)=><p>{item}</p>)}
-        <p>{"Name"} &nbsp; &nbsp; {"Post"}</p>
-        {/* {userName.map((val,key)=>
-          <pre>{val} : {userPost[key]}</pre>
-        )} */}
-          {
-          
-            combine.map((val,key)=>
-              <pre>
-                { i < 3 ? parseInt(i++) : userName[key-i]} : {val}
-              </pre>
-            )
-          }
-          <p>Employee information</p>
-          <p>{emp.display()}</p>
-          <p>{emp.setName('abid')}</p>
-          <p>{emp.display()}</p>
-
-
-          <p>User information</p>
-      
-          {getUser()}
-
-         <p>Addition   :  {add(1,3)}</p> 
-
+  return(
+    <div>
+    <User/>
+    {/* <Student obj={Student.defaultProps}/> */}
+    {/* <Student name={Student.defaultProps.name}/> */}
+    {/* <Student name="abid"/> */}
+    {/* <Course title="MCA"/> */}
+    {/* <Enrollment date="20/2/2025"></Enrollment> */}
     </div>
   );
 }
 
 export default App;
 
-//ES6 --> 
 
-export const add = (a,b) =>{
-  return a+b;
+export function Student(props){
+  let data = props.obj;
+  return (
+    <>
+        <div>this is student information </div>
+        <div>Student Name : {props.obj.name}</div>
+        <div>Student Age : {props.obj.age}</div>
+        <div>Student Class : {props.obj.className}</div>
+        <div>Student Address : {data.address}</div>
+    </>
+  )
+}
+
+export class Course extends React.Component{
+  render(){
+    return(
+      <div>
+        <div>this is class base components</div>
+        <div>Course Name : {this.props.title}</div>
+      </div>
+    ) 
+  }
+}
+
+export const Enrollment = ({date}) =>{
+  return(
+    <div>Enroll Date  : {date}</div>
+  );
+}
+
+
+//default props 
+
+Student.defaultProps = {
+  name:"Ali",
+  age : "14",
+  address :"Ajmer",
+  className : "8th"
 }
 
 
